@@ -350,20 +350,20 @@
 </div>
 </div>
 <div class="glass p-10 rounded-3xl">
-<form class="space-y-6">
+<form id="contactForm" class="space-y-6">
 <div class="space-y-2">
 <label class="text-sm font-bold text-slate-300 uppercase tracking-widest">Nome Completo</label>
-<input class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary outline-none text-white" type="text"/>
+<input id="formNome" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary outline-none text-white" required="" type="text"/>
 </div>
 <div class="space-y-2">
 <label class="text-sm font-bold text-slate-300 uppercase tracking-widest">E-mail</label>
-<input class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary outline-none text-white" type="email"/>
+<input id="formEmail" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary outline-none text-white" required="" type="email"/>
 </div>
 <div class="space-y-2">
 <label class="text-sm font-bold text-slate-300 uppercase tracking-widest">Mensagem</label>
-<textarea class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary outline-none text-white" rows="4"></textarea>
+<textarea id="formMensagem" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary outline-none text-white" required="" rows="4"></textarea>
 </div>
-<button class="w-full bg-primary text-white py-5 rounded-xl font-bold text-lg hover:shadow-[0_0_30px_rgba(134,47,188,0.4)] transition-all">
+<button type="submit" class="w-full bg-primary text-white py-5 rounded-xl font-bold text-lg hover:shadow-[0_0_30px_rgba(134,47,188,0.4)] transition-all">
                     Enviar Mensagem
                 </button>
 </form>
@@ -408,6 +408,24 @@
 </div>
 </div>
 </footer>
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nome = document.getElementById('formNome').value;
+        const email = document.getElementById('formEmail').value;
+        const mensagem = document.getElementById('formMensagem').value;
+        
+        // Número de telefone do WhatsApp (com código do país e DDD, sem espaços ou símbolos)
+        const numeroWhatsApp = "5500000000000"; // INSIRA O NÚMERO REAL AQUI
+        
+        const textoEditado = `Olá Camilla! Vim pelo seu site e gostaria de conversar.\n\n*Meus dados:*\n👤 *Nome:* ${nome}\n📧 *E-mail:* ${email}\n\n💬 *Mensagem:*\n${mensagem}`;
+        
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoEditado)}`;
+        
+        window.open(urlWhatsApp, '_blank');
+    });
+</script>
 </body>
 <script>
     // Intersection Observer for scroll-reveal
